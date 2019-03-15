@@ -1,0 +1,1 @@
+dotnet nuget push IrBusWebService.1.5.0.nupkg -k oy2mq6y6zxsdkfmiymeqz66jf4nl2mjuzc6wgl3ggvndny -s https://api.nuget.org/v3/index.json

@@ -1,0 +1,9 @@
+E:\Package\IrBusWebService\IrBusWebService\bin\Release\netstandard2.0\IrBusWebService.deps.json
+E:\Package\IrBusWebService\IrBusWebService\bin\Release\netstandard2.0\IrBusWebService.dll
+E:\Package\IrBusWebService\IrBusWebService\bin\Release\netstandard2.0\IrBusWebService.pdb
+E:\Package\IrBusWebService\IrBusWebService\obj\Release\netstandard2.0\IrBusWebService.csprojAssemblyReference.cache
+E:\Package\IrBusWebService\IrBusWebService\obj\Release\netstandard2.0\IrBusWebService.csproj.CoreCompileInputs.cache
+E:\Package\IrBusWebService\IrBusWebService\obj\Release\netstandard2.0\IrBusWebService.AssemblyInfoInputs.cache
+E:\Package\IrBusWebService\IrBusWebService\obj\Release\netstandard2.0\IrBusWebService.AssemblyInfo.cs
+E:\Package\IrBusWebService\IrBusWebService\obj\Release\netstandard2.0\IrBusWebService.dll
+E:\Package\IrBusWebService\IrBusWebService\obj\Release\netstandard2.0\IrBusWebService.pdb

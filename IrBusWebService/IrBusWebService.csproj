@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Keyvan Abdollahzadeh</Authors>
+    <Company />
+    <Description>Iran Bus WebService</Description>
+    <PackageProjectUrl>https://bitbucket.org/keyone2693/irbuswebservice</PackageProjectUrl>
+    <RepositoryUrl>https://bitbucket.org/keyone2693/irbuswebservice</RepositoryUrl>
+    <PackageReleaseNotes>Support .net standard 2</PackageReleaseNotes>
+    <AssemblyVersion>1.5.0.0</AssemblyVersion>
+    <Version>1.5.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="RestSharp" Version="106.6.9" />
+  </ItemGroup>
+
+</Project>
