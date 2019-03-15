@@ -4,7 +4,7 @@ Iran Bus Service Package
 
 Webservice package for iran bus api on safar724 website
 
-## Development of this project postponed
+## Development 
 
 ### Before posting new issues: [Test samples](https://bitbucket.org/keyone2693/irbuswebservice/src/344175d760ee1c2d88a9ce9ee217304301dc6d04/ExampleTest/?at=master)
 
