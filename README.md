@@ -34,24 +34,24 @@ Currently the library supports following method:
 
 ***
 
-- [x] Getcode
-- [x] GetToken
-- [x] ValidateToken
-- [x] GetCities
-- [x] GetServices
-- [x] GetBusService
-- [x] BuyTicket
-- [x] InfoBuyTicket
-- [x] RefundOverviewTicket
-- [x] RefundTicket
-- [x] GetTokenAsync
-- [x] GetCitiesAsync
-- [x] GetServicesAsync
-- [x] GetBusServiceAsync
-- [x] BuyTicketAsync
-- [x] InfoBuyTicketAsync
-- [x] RefundOverviewTicketAsync
-- [x] RefundTicketAsync
+- [*] Getcode
+- [*] GetToken
+- [*] ValidateToken
+- [*] GetCities
+- [*] GetServices
+- [*] GetBusService
+- [*] BuyTicket
+- [*] InfoBuyTicket
+- [*] RefundOverviewTicket
+- [*] RefundTicket
+- [*] GetTokenAsync
+- [*] GetCitiesAsync
+- [*] GetServicesAsync
+- [*] GetBusServiceAsync
+- [*] BuyTicketAsync
+- [*] InfoBuyTicketAsync
+- [*] RefundOverviewTicketAsync
+- [*] RefundTicketAsync
 
 
 ## Easy to use
