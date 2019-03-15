@@ -70,7 +70,7 @@ namespace IrBusWebService
 
         public BusTokenResult GetToken(string username, string password, string granttype = "password")
         {
-            var client = new RestClient("https://api.safar724.com/_token");
+            var client = new RestClient("https://api.safar724.com/token");
 
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -372,7 +372,7 @@ namespace IrBusWebService
 
         public BusTokenResult GetTokenAsync(string username, string password, string granttype = "password")
         {
-            var client = new RestClient("https://api.safar724.com/_token");
+            var client = new RestClient("https://api.safar724.com/token");
 
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");

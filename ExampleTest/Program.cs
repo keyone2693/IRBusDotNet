@@ -13,7 +13,7 @@ namespace ExampleTest
 
             bool flag = api.ValidateToken(token.Created,token.ExpireIn);
 
-            IBusApi api = new BusApi("token");
+            //IBusApi api = new BusApi("token");
 
             IBusApi _api = new BusApi(token.AccessToken);
             var cities = _api.GetCities();
