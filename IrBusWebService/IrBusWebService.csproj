@@ -8,8 +8,8 @@
     <PackageProjectUrl>https://bitbucket.org/keyone2693/irbuswebservice</PackageProjectUrl>
     <RepositoryUrl>https://bitbucket.org/keyone2693/irbuswebservice</RepositoryUrl>
     <PackageReleaseNotes>Support .net standard 2</PackageReleaseNotes>
-    <AssemblyVersion>1.5.0.0</AssemblyVersion>
-    <Version>1.5.1</Version>
+    <AssemblyVersion>1.5.4.0</AssemblyVersion>
+    <Version>1.5.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
