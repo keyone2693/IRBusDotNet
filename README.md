@@ -24,7 +24,7 @@ its use .net standard
 ## Easy to install
 Use library as dll, reference from [nuget](https://www.nuget.org/packages/IrBusWebService/)
 or just use this in package manager console
-```c#
+```java
 Install-Package IrBusWebService
 ```
 
