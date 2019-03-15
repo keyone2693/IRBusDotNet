@@ -17,11 +17,13 @@ namespace IrBusWebService
     public class BusApi : IBusApi
     {
         private string _token;
+        public BusApi()
+        {
+        }
         public BusApi(string token)
         {
             _token = token;
         }
-
         public string Getcode(string statusCode)
         {
             switch (statusCode)

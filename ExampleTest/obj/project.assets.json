@@ -226,7 +226,7 @@
           "lib/netstandard2.0/RestSharp.dll": {}
         }
       },
-      "IrBusWebService/1.5.0": {
+      "IrBusWebService/1.5.1": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -765,7 +765,7 @@
         "restsharp.nuspec"
       ]
     },
-    "IrBusWebService/1.5.0": {
+    "IrBusWebService/1.5.1": {
       "type": "project",
       "path": "../IrBusWebService/IrBusWebService.csproj",
       "msbuildProject": "../IrBusWebService/IrBusWebService.csproj"
@@ -773,7 +773,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "IrBusWebService >= 1.5.0",
+      "IrBusWebService >= 1.5.1",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },

@@ -1,3 +1,126 @@
 # IrBusWebService
 
 Iran Bus Service Package
+
+Webservice package for iran bus api on safar724 website
+
+## Development of this project postponed
+
+### Before posting new issues: [Test samples](https://bitbucket.org/keyone2693/irbuswebservice/src/344175d760ee1c2d88a9ce9ee217304301dc6d04/ExampleTest/?at=master)
+
+Note that: you should register on safar724 website and get your username and password to using this package
+
+[![Build status](https://img.shields.io/appveyor/ci/keyone2693/irbuswebservice.svg)](https://ci.appveyor.com/project/keyone2693/irbuswebservice)
+[![NuGet](	https://img.shields.io/nuget/v/:IrBusWebService.svg)](https://www.nuget.org/packages/IrBusWebService/)
+[![MyGet](https://img.shields.io/myget/a-legotin/v/instasharper-develop.svg)](https://www.myget.org/feed/Details/instasharper-develop)
+[![GitHub stars](https://img.shields.io/github/stars/a-legotin/InstaSharper.svg)](https://github.com/a-legotin/InstaSharper/stargazers)
+
+#### Current version: 1.5.0 [Stable]
+
+## Overview
+
+## Cross-platform by design
+you can use it in both .net core and .net framework 
+its use .net standard
+
+## Easy to install
+Use library as dll, reference from [nuget](https://www.nuget.org/packages/InstaSharper/) or clone source code.
+or just use this in package manager console
+```c#
+Install-Package IrBusWebService -Version 1.5.0  
+```
+
+## Features
+
+Currently the library supports following method:
+
+***
+
+- [x] Getcode
+- [x] GetToken
+- [x] ValidateToken
+- [x] GetCities
+- [x] GetServices
+- [x] GetBusService
+- [x] BuyTicket
+- [x] InfoBuyTicket
+- [x] RefundOverviewTicket
+- [x] RefundTicket
+- [x] GetTokenAsync
+- [x] GetCitiesAsync
+- [x] GetServicesAsync
+- [x] GetBusServiceAsync
+- [x] BuyTicketAsync
+- [x] InfoBuyTicketAsync
+- [x] RefundOverviewTicketAsync
+- [x] RefundTicketAsync
+
+
+## Easy to use
+#### Get Token (save it in database)
+```c#
+IBusApi api = new BusApi();        
+var token = api.GetToken("Username","Password");       
+
+```
+##### Note: the grant_type is password by default
+
+#### Validate Token
+```c#
+bool flag = api.ValidateToken(token.Created,token.ExpireIn);
+```
+
+#### GetCities:
+###### This method lists all of the cities with a specific ID. Provided ID is required for further methods.Since list of cities rarely changes, caching the list for feature use is highly recommended:
+```c#
+IBusApi _api = new BusApi(token.AccessToken);
+var cities = _api.GetCities();
+```
+
+#### GetServices:
+###### 
+```c#
+Output Array of the Bus Summary object
+```
+
+#### GetBusService:
+```c#
+Get a specific service
+This method returns detailed information of the specific bus
+```
+
+#### BuyTicket:
+```c#
+this method books a ticket from the specific service and returns aticket ID.
+If online payment method is selected, this method also will returna payment endpoint.
+To finalize the booking processfor the online payment method,
+user must be redirected to the provided endpoint and should complete payment process within 10 minutes,
+then ticket issuccessfully booked and ticket number isissued
+```
+
+#### InfoBuyTicket:
+```c#
+Get a specific ticket
+This method returns detailed information of the specific ticket
+```
+#### RefundOverviewTicket:
+```c#
+Get refund overview of a ticket
+This method returns detailed information about a ticket which is subjectto refund
+```
+
+#### RefundTicket:
+```c#
+This method actually refunds the ticket
+```
+
+
+
+#### [MoreInfoAboutApi](/wiki/)
+
+
+
+# License
+
+MIT
+

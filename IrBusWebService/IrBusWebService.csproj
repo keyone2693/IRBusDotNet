@@ -9,7 +9,7 @@
     <RepositoryUrl>https://bitbucket.org/keyone2693/irbuswebservice</RepositoryUrl>
     <PackageReleaseNotes>Support .net standard 2</PackageReleaseNotes>
     <AssemblyVersion>1.5.0.0</AssemblyVersion>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

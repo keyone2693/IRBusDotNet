@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Iran Bus WebService")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.5.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.5.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.5.1")]
 [assembly: System.Reflection.AssemblyProductAttribute("IrBusWebService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IrBusWebService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.5.0.0")]
