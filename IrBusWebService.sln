@@ -7,11 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleTest", "ExampleTest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IrBusWebService", "IrBusWebService\IrBusWebService.csproj", "{FCBFE9F5-5020-4A0C-B48C-7DB7D57F2C93}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{CDF98962-21E9-46C3-8AD6-A66170C56C3E}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\key1-lab\Documents\Telegram Desktop\safar724Doc.pdf = C:\Users\key1-lab\Documents\Telegram Desktop\safar724Doc.pdf
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
