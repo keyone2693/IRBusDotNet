@@ -11,7 +11,7 @@ Webservice package for iran bus api on safar724 website
 Note that: you should register on safar724 website and get your username and password to using this package
 
 [![Build status](https://img.shields.io/appveyor/ci/keyone2693/irbuswebservice.svg)](https://ci.appveyor.com/project/keyone2693/irbuswebservice)
-[![NuGet](https://img.shields.io/nuget/v/:IrBusWebService.svg)](https://www.nuget.org/packages/IrBusWebService/)
+[![NuGet](https://img.shields.io/nuget/v/IrBusWebService.svg)](https://www.nuget.org/packages/IrBusWebService/)
 
 #### Current version: 1.5.1 [Stable]
 
