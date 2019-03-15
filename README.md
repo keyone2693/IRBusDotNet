@@ -33,7 +33,6 @@ Install-Package IrBusWebService
 Currently the library supports following method:
 
 ***
-
 - [*] Getcode
 - [*] GetToken
 - [*] ValidateToken
@@ -52,7 +51,7 @@ Currently the library supports following method:
 - [*] InfoBuyTicketAsync
 - [*] RefundOverviewTicketAsync
 - [*] RefundTicketAsync
-
+***
 
 ## Easy to use
 #### Get Token (save it in database)
