@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace IrBusWebService.Results
+namespace IRBusDotNet.Results
 {
     public class BusTokenResult : ErrorStatusResult
     {

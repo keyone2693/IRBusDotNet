@@ -1,7 +1,7 @@
-﻿using IrBusWebService.Models;
+﻿using IRBusDotNet.Models;
 using System.Collections.Generic;
 
-namespace IrBusWebService.Results
+namespace IRBusDotNet.Results
 {
     public class GetServicesResult : ErrorStatusResult
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace IrBusWebService.Models
+namespace IRBusDotNet.Models
 {
     public class BusServices
     {

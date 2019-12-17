@@ -1,5 +1,5 @@
 ﻿
-namespace IrBusWebService.Models.EndBuy
+namespace IRBusDotNet.Models.EndBuy
 {
     public class RefundOverview
     {

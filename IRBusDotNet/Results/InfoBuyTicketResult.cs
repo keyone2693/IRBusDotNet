@@ -1,9 +1,9 @@
-﻿using IrBusWebService.Models.EndBuy.Info;
+﻿using IRBusDotNet.Models.EndBuy.Info;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IrBusWebService.Results
+namespace IRBusDotNet.Results
 {
     public class InfoBuyTicketResult : ErrorStatusResult
     {

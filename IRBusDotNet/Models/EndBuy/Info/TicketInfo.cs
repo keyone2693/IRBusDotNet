@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IrBusWebService.Models.EndBuy.Info
+namespace IRBusDotNet.Models.EndBuy.Info
 {
     public class TicketInfo
     {

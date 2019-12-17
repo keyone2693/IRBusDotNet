@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <UserSecretsId>ac6ed237-0c21-4feb-b4c4-911c860c987c</UserSecretsId>
     <Company>Keyvan Abdollahzadeh</Company>
-    <Version>1.6.0</Version>
+    <Version>1.7.2</Version>
     <Description>Iran Bus Pakage (safar724)</Description>
     <PackageProjectUrl>https://github.com/keyone2693/IRBusDotNet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/keyone2693/IRBusDotNet</RepositoryUrl>

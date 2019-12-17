@@ -1,6 +1,6 @@
 ﻿
 
-namespace IrBusWebService.Models
+namespace IRBusDotNet.Models
 {
     public class BusToken
     {

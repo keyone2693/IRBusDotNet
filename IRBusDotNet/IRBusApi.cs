@@ -1,8 +1,8 @@
-﻿using IrBusWebService.Models;
-using IrBusWebService.Models.BusServiceGoF;
-using IrBusWebService.Models.EndBuy;
-using IrBusWebService.Models.EndBuy.Info;
-using IrBusWebService.Results;
+﻿using IRBusDotNet.Models;
+using IRBusDotNet.Models.BusServiceGoF;
+using IRBusDotNet.Models.EndBuy;
+using IRBusDotNet.Models.EndBuy.Info;
+using IRBusDotNet.Results;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -10,19 +10,24 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace IrBusWebService
+namespace IRBusDotNet
 {
-    public class BusApi : IBusApi
+    public class IRBusApi : IIRBusApi
     {
+        private readonly CancellationTokenSource _cancellationTokenSource;
+
         private string _token;
-        public BusApi()
+        public IRBusApi()
         {
         }
-        public BusApi(string token)
+        public IRBusApi(string token)
         {
             _token = token;
+            _cancellationTokenSource = new CancellationTokenSource();
+
         }
         public string Getcode(string statusCode)
         {
@@ -67,7 +72,6 @@ namespace IrBusWebService
             }
             return "خطا";
         }
-
         public BusTokenResult GetToken(string username, string password, string granttype = "password")
         {
             var client = new RestClient("https://api.safar724.com/token");
@@ -155,7 +159,7 @@ namespace IrBusWebService
                 };
             }
         }
-        public GetServicesResult GetServices( string startCityId, string endCityId, string date)
+        public GetServicesResult GetServices(string startCityId, string endCityId, string date)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/buses/" + startCityId + "/" + endCityId + "/" + date);
             var request = new RestRequest(Method.GET);
@@ -191,7 +195,7 @@ namespace IrBusWebService
             }
         }
 
-        public GetBusServiceResult GetBusService( string routId)
+        public GetBusServiceResult GetBusService(string routId)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/buses/" + routId);
             var request = new RestRequest(Method.GET);
@@ -227,7 +231,7 @@ namespace IrBusWebService
             }
         }
 
-        public BuyTicketResult BuyTicket( string servId, TicketToBook ticket)
+        public BuyTicketResult BuyTicket(string servId, TicketToBook ticket)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/tickets");
             var request = new RestRequest(Method.POST);
@@ -367,10 +371,7 @@ namespace IrBusWebService
             }
         }
 
-
-
-
-        public BusTokenResult GetTokenAsync(string username, string password, string granttype = "password")
+        public async Task<BusTokenResult> GetTokenAsync(string username, string password, string granttype = "password")
         {
             var client = new RestClient("https://api.safar724.com/token");
 
@@ -379,172 +380,168 @@ namespace IrBusWebService
             request.AddParameter("undefined", "grant_type=" + granttype + "&username=" + username + "&password=" + password + "&undefined=", ParameterType.RequestBody);
             //IRestResponse response = client.Execute(request);
             BusTokenResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
+
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+                var tokencontent = JsonConvert.DeserializeObject<BusToken>(response.Content.Replace(".expires", "expires").Replace(".issued", "issued"));
+
+                CultureInfo provider = CultureInfo.InvariantCulture;
+                DateTime issued = DateTime.ParseExact(tokencontent.issued.Split(',')[1].TrimEnd(new char[] { 'T', 'M', 'G' }).Trim(), "dd MMM yyyy HH:mm:ss", provider);
+                DateTime expires = DateTime.ParseExact(tokencontent.expires.Split(',')[1].TrimEnd(new char[] { 'T', 'M', 'G' }).Trim(), "dd MMM yyyy HH:mm:ss", provider);
+                result = new BusTokenResult
                 {
-                    var tokencontent = JsonConvert.DeserializeObject<BusToken>(response.Content.Replace(".expires", "expires").Replace(".issued", "issued"));
+                    Created = issued,
+                    ExpireIn = expires,
+                    AccessToken = tokencontent.access_token,
+                    TokenType = tokencontent.token_type,
+                    UserName = tokencontent.userName,
+                    Status = true,
+                    Error = ""
+                };
 
-                    CultureInfo provider = CultureInfo.InvariantCulture;
-                    DateTime issued = DateTime.ParseExact(tokencontent.issued.Split(',')[1].TrimEnd(new char[] { 'T', 'M', 'G' }).Trim(), "dd MMM yyyy HH:mm:ss", provider);
-                    DateTime expires = DateTime.ParseExact(tokencontent.expires.Split(',')[1].TrimEnd(new char[] { 'T', 'M', 'G' }).Trim(), "dd MMM yyyy HH:mm:ss", provider);
-                    result = new BusTokenResult
-                    {
-                        Created = issued,
-                        ExpireIn = expires,
-                        AccessToken = tokencontent.access_token,
-                        TokenType = tokencontent.token_type,
-                        UserName = tokencontent.userName,
-                        Status = true,
-                        Error = ""
-                    };
-
-                }
-                else
+            }
+            else
+            {
+                var tokencontent = JsonConvert.DeserializeObject<BusToken>(response.Content);
+                result = new BusTokenResult
                 {
-                    var tokencontent = JsonConvert.DeserializeObject<BusToken>(response.Content);
-                    result = new BusTokenResult
-                    {
-                        Status = false,
-                        Error = tokencontent.error,
-                        ErrorDescription = tokencontent.error_description
-                    };
-                }
+                    Status = false,
+                    Error = tokencontent.error,
+                    ErrorDescription = tokencontent.error_description
+                };
+            }
 
 
-            });
-            asyncHandle.Abort();
             return result;
-            
+
         }
 
-        public GetCitiesResult GetCitiesAsync()
+        public async Task<GetCitiesResult> GetCitiesAsync()
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/cities");
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", "Bearer " + _token);
             // IRestResponse response = client.Execute(request);
             GetCitiesResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
-            {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
-                {
-                    var cities = JsonConvert.DeserializeObject<IEnumerable<BusCity>>(response.Content);
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
 
-                    result = new GetCitiesResult
-                    {
-                        BusCities = cities,
-                        Status = true
-                    };
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+            {
+                var cities = JsonConvert.DeserializeObject<IEnumerable<BusCity>>(response.Content);
+
+                result = new GetCitiesResult
                 {
-                    result = new GetCitiesResult
-                    {
-                        Status = false,
-                        Error = "اعتبار سنجی نشد",
-                        ErrorDescription = "باید دوباره توکن را تولید کنید"
-                    };
-                }
-                else
+                    BusCities = cities,
+                    Status = true
+                };
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                result = new GetCitiesResult
                 {
-                    result = new GetCitiesResult
-                    {
-                        Status = false,
-                        Error = "خطای نامشخص",
-                        ErrorDescription = response.ErrorMessage
-                    };
-                }
-            });
-            asyncHandle.Abort();
+                    Status = false,
+                    Error = "اعتبار سنجی نشد",
+                    ErrorDescription = "باید دوباره توکن را تولید کنید"
+                };
+            }
+            else
+            {
+                result = new GetCitiesResult
+                {
+                    Status = false,
+                    Error = "خطای نامشخص",
+                    ErrorDescription = response.ErrorMessage
+                };
+            }
+
             return result;
 
         }
-        public GetServicesResult GetServicesAsync( string startCityId, string endCityId, string date)
+        public async Task<GetServicesResult> GetServicesAsync(string startCityId, string endCityId, string date)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/buses/" + startCityId + "/" + endCityId + "/" + date);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", "Bearer " + _token);
             //IRestResponse response = client.Execute(request);
             GetServicesResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
+
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+                var busservice = JsonConvert.DeserializeObject<IEnumerable<BusServices>>(response.Content);
+                result = new GetServicesResult
                 {
-                    var busservice = JsonConvert.DeserializeObject<IEnumerable<BusServices>>(response.Content);
-                    result = new GetServicesResult
-                    {
-                        BusServices = busservice,
-                        Status = true
-                    };
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    BusServices = busservice,
+                    Status = true
+                };
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                result = new GetServicesResult
                 {
-                    result = new GetServicesResult
-                    {
-                        Status = false,
-                        Error = "اعتبار سنجی نشد",
-                        ErrorDescription = "باید دوباره توکن را تولید کنید"
-                    };
-                }
-                else
+                    Status = false,
+                    Error = "اعتبار سنجی نشد",
+                    ErrorDescription = "باید دوباره توکن را تولید کنید"
+                };
+            }
+            else
+            {
+                result = new GetServicesResult
                 {
-                    result = new GetServicesResult
-                    {
-                        Status = false,
-                        Error = "خطای نامشخص",
-                        ErrorDescription = response.ErrorMessage
-                    };
-                }
-            });
-            asyncHandle.Abort();
+                    Status = false,
+                    Error = "خطای نامشخص",
+                    ErrorDescription = response.ErrorMessage
+                };
+            }
+
             return result;
 
         }
 
-        public GetBusServiceResult GetBusServiceAsync(string routId)
+        public async Task<GetBusServiceResult> GetBusServiceAsync(string routId)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/buses/" + routId);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", "Bearer " + _token);
             // IRestResponse response = client.Execute(request);
             GetBusServiceResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
+
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
+
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+                var busservice = JsonConvert.DeserializeObject<BusServiceGo>(response.Content);
+                result = new GetBusServiceResult
                 {
-                    var busservice = JsonConvert.DeserializeObject<BusServiceGo>(response.Content);
-                    result = new GetBusServiceResult
-                    {
-                        BusServiceGo = busservice,
-                        Status = true
-                    };
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    BusServiceGo = busservice,
+                    Status = true
+                };
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                result = new GetBusServiceResult
                 {
-                    result = new GetBusServiceResult
-                    {
-                        Status = false,
-                        Error = "اعتبار سنجی نشد",
-                        ErrorDescription = "باید دوباره توکن را تولید کنید"
-                    };
-                }
-                else
+                    Status = false,
+                    Error = "اعتبار سنجی نشد",
+                    ErrorDescription = "باید دوباره توکن را تولید کنید"
+                };
+            }
+            else
+            {
+                result = new GetBusServiceResult
                 {
-                    result = new GetBusServiceResult
-                    {
-                        Status = false,
-                        Error = "خطای نامشخص",
-                        ErrorDescription = response.ErrorMessage
-                    };
-                }
-            });
-            asyncHandle.Abort();
+                    Status = false,
+                    Error = "خطای نامشخص",
+                    ErrorDescription = response.ErrorMessage
+                };
+            }
+
             return result;
 
         }
 
-        public BuyTicketResult BuyTicketAsync(string servId, TicketToBook ticket)
+        public async Task<BuyTicketResult> BuyTicketAsync(string servId, TicketToBook ticket)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/tickets");
             var request = new RestRequest(Method.POST);
@@ -553,161 +550,159 @@ namespace IrBusWebService
             request.AddJsonBody(ticket);
             //IRestResponse response = client.Execute(request);
             BuyTicketResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
-            {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
-                {
-                    var busservice = JsonConvert.DeserializeObject<TicketSummary>(response.Content);
-                    result = new BuyTicketResult
-                    {
-                        TicketSummary = busservice,
-                        Status = true
-                    };
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
 
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+            {
+                var busservice = JsonConvert.DeserializeObject<TicketSummary>(response.Content);
+                result = new BuyTicketResult
                 {
-                    result = new BuyTicketResult
-                    {
-                        Status = false,
-                        Error = "اعتبار سنجی نشد",
-                        ErrorDescription = "باید دوباره توکن را تولید کنید"
-                    };
-                }
-                else
+                    TicketSummary = busservice,
+                    Status = true
+                };
+
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                result = new BuyTicketResult
                 {
-                    result = new BuyTicketResult
-                    {
-                        Status = false,
-                        Error = "خطای نامشخص",
-                        ErrorDescription = response.ErrorMessage
-                    };
-                }
-            });
-            asyncHandle.Abort();
+                    Status = false,
+                    Error = "اعتبار سنجی نشد",
+                    ErrorDescription = "باید دوباره توکن را تولید کنید"
+                };
+            }
+            else
+            {
+                result = new BuyTicketResult
+                {
+                    Status = false,
+                    Error = "خطای نامشخص",
+                    ErrorDescription = response.ErrorMessage
+                };
+            }
+
             return result;
 
         }
 
-        public InfoBuyTicketResult InfoBuyTicketAsync(long ticketId)
+        public async Task<InfoBuyTicketResult> InfoBuyTicketAsync(long ticketId)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/tickets/" + ticketId);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", "Bearer " + _token);
             //IRestResponse response = client.Execute(request);
             InfoBuyTicketResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
+
+
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+                var busservice = JsonConvert.DeserializeObject<TicketInfo>(response.Content);
+                result = new InfoBuyTicketResult
                 {
-                    var busservice = JsonConvert.DeserializeObject<TicketInfo>(response.Content);
-                    result = new InfoBuyTicketResult
-                    {
-                        TicketInfo = busservice,
-                        Status = true
-                    };
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    TicketInfo = busservice,
+                    Status = true
+                };
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                result = new InfoBuyTicketResult
                 {
-                    result = new InfoBuyTicketResult
-                    {
-                        Status = false,
-                        Error = "اعتبار سنجی نشد",
-                        ErrorDescription = "باید دوباره توکن را تولید کنید"
-                    };
-                }
-                else
+                    Status = false,
+                    Error = "اعتبار سنجی نشد",
+                    ErrorDescription = "باید دوباره توکن را تولید کنید"
+                };
+            }
+            else
+            {
+                result = new InfoBuyTicketResult
                 {
-                    result = new InfoBuyTicketResult
-                    {
-                        Status = false,
-                        Error = "خطای نامشخص",
-                        ErrorDescription = response.ErrorMessage
-                    };
-                }
-            });
-            asyncHandle.Abort();
+                    Status = false,
+                    Error = "خطای نامشخص",
+                    ErrorDescription = response.ErrorMessage
+                };
+            }
+
             return result;
 
         }
-        public RefundOverviewTicketResult RefundOverviewTicketAsync(string ticketId)
+        public async Task<RefundOverviewTicketResult> RefundOverviewTicketAsync(string ticketId)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/tickets/" + ticketId + "/refund");
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", "Bearer " + _token);
             //IRestResponse response = client.Execute(request);
             RefundOverviewTicketResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
+
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+                var busservice = JsonConvert.DeserializeObject<RefundOverview>(response.Content);
+                result = new RefundOverviewTicketResult
                 {
-                    var busservice = JsonConvert.DeserializeObject<RefundOverview>(response.Content);
-                    result = new RefundOverviewTicketResult
-                    {
-                        RefundOverview = busservice,
-                        Status = true
-                    };
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    RefundOverview = busservice,
+                    Status = true
+                };
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                result = new RefundOverviewTicketResult
                 {
-                    result = new RefundOverviewTicketResult
-                    {
-                        Status = false,
-                        Error = "اعتبار سنجی نشد",
-                        ErrorDescription = "باید دوباره توکن را تولید کنید"
-                    };
-                }
-                else
+                    Status = false,
+                    Error = "اعتبار سنجی نشد",
+                    ErrorDescription = "باید دوباره توکن را تولید کنید"
+                };
+            }
+            else
+            {
+                result = new RefundOverviewTicketResult
                 {
-                    result = new RefundOverviewTicketResult
-                    {
-                        Status = false,
-                        Error = "خطای نامشخص",
-                        ErrorDescription = response.ErrorMessage
-                    };
-                }
-            });
-            asyncHandle.Abort();
+                    Status = false,
+                    Error = "خطای نامشخص",
+                    ErrorDescription = response.ErrorMessage
+                };
+            }
+
             return result;
 
         }
 
-        public RefundTicketResult RefundTicketAsync(string ticketId)
+        public async Task<RefundTicketResult> RefundTicketAsync(string ticketId)
         {
             var client = new RestClient("https://api.safar724.com/api/v1.0/tickets/" + ticketId + "/refund");
             var request = new RestRequest(Method.POST);
             request.AddHeader("Authorization", "Bearer " + _token);
             // IRestResponse response = client.Execute(request);
             RefundTicketResult result = null;
-            var asyncHandle = client.ExecuteAsync(request, response =>
+            var response = await client.ExecuteTaskAsync(request, _cancellationTokenSource.Token);
+
+
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {
-                if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+                result = new RefundTicketResult
                 {
-                    result = new RefundTicketResult
-                    {
-                        Status = true
-                    };
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    Status = true
+                };
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                result = new RefundTicketResult
                 {
-                    result = new RefundTicketResult
-                    {
-                        Status = false,
-                        Error = "اعتبار سنجی نشد",
-                        ErrorDescription = "باید دوباره توکن را تولید کنید"
-                    };
-                }
-                else
+                    Status = false,
+                    Error = "اعتبار سنجی نشد",
+                    ErrorDescription = "باید دوباره توکن را تولید کنید"
+                };
+            }
+            else
+            {
+                result = new RefundTicketResult
                 {
-                    result = new RefundTicketResult
-                    {
-                        Status = false,
-                        Error = "خطای نامشخص",
-                        ErrorDescription = response.ErrorMessage
-                    };
-                }
-            });
-            asyncHandle.Abort();
+                    Status = false,
+                    Error = "خطای نامشخص",
+                    ErrorDescription = response.ErrorMessage
+                };
+            }
+
             return result;
         }
     }

@@ -1,9 +1,9 @@
-﻿using IrBusWebService.Models.BusServiceGoF;
+﻿using IRBusDotNet.Models.BusServiceGoF;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IrBusWebService.Results
+namespace IRBusDotNet.Results
 {
     public class GetBusServiceResult : ErrorStatusResult
     {

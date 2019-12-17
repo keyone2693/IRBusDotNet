@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IrBusWebService.Models.BusServiceGoF
+namespace IRBusDotNet.Models.BusServiceGoF
 {
     public class BusServiceGo
     {

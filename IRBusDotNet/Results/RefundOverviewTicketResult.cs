@@ -1,9 +1,9 @@
-﻿using IrBusWebService.Models.EndBuy;
+﻿using IRBusDotNet.Models.EndBuy;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IrBusWebService.Results
+namespace IRBusDotNet.Results
 {
     public class RefundOverviewTicketResult : ErrorStatusResult
     {

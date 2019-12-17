@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IrBusWebService.Results
+namespace IRBusDotNet.Results
 {
     public class RefundTicketResult : ErrorStatusResult
     {

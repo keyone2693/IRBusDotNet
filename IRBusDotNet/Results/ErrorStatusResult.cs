@@ -1,5 +1,5 @@
 ﻿
-namespace IrBusWebService.Results
+namespace IRBusDotNet.Results
 {
     public abstract class ErrorStatusResult
     {
