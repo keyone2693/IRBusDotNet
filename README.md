@@ -1,4 +1,5 @@
-# IrBusWebService
+# IRBusDotNet
+
 
 Iran Bus Service Package
 
@@ -6,12 +7,12 @@ Webservice package for iran bus api on safar724 website
 
 ## Development 
 
-### Before posting new issues: [Test samples](https://bitbucket.org/keyone2693/irbuswebservice/src/344175d760ee1c2d88a9ce9ee217304301dc6d04/ExampleTest/?at=master)
+### Before posting new issues: [Test samples](https://bitbucket.org/keyone2693/IRBusDotNet/src/344175d760ee1c2d88a9ce9ee217304301dc6d04/ExampleTest/?at=master)
 
 Note that: you should register on safar724 website and get your username and password to using this package
 
-[![Build status](https://img.shields.io/appveyor/ci/keyone2693/irbuswebservice.svg)](https://ci.appveyor.com/project/keyone2693/irbuswebservice)
-[![NuGet](https://img.shields.io/nuget/v/IrBusWebService.svg)](https://www.nuget.org/packages/IrBusWebService/)
+[![Build status](https://img.shields.io/appveyor/ci/keyone2693/IRBusDotNet.svg)](https://ci.appveyor.com/project/keyone2693/irbuswebservice)
+[![NuGet](https://img.shields.io/nuget/v/IRBusDotNet.svg)](https://www.nuget.org/packages/IRBusDotNet/)
 
 #### Current version: 1.5.x [Stable]
 
@@ -22,10 +23,10 @@ you can use it in both .net core and .net framework
 its use .net standard
 
 ## Easy to install
-Use library as dll, reference from [nuget](https://www.nuget.org/packages/IrBusWebService/)
+Use library as dll, reference from [nuget](https://www.nuget.org/packages/IRBusDotNet/)
 or just use this in package manager console
 ```java
-Install-Package IrBusWebService
+Install-Package IRBusDotNet
 ```
 
 ## Features
@@ -56,7 +57,7 @@ Currently the library supports following method:
 ## Easy to use
 #### Get Token (save it in database)
 ```java
-IBusApi api = new BusApi();        
+IIRBusApi api = new IRBusApi();        
 var token = api.GetToken("Username","Password");       
 
 ```
@@ -113,7 +114,7 @@ This method actually refunds the ticket
 
 
 
-#### [MoreInfoAboutApi](https://bitbucket.org/keyone2693/irbuswebservice/src/master/IrBusWebService/Doc/safar724Doc.pdf)
+#### [MoreInfoAboutApi](https://bitbucket.org/keyone2693/irbuswebservice/src/master/IRBusDotNet/Doc/safar724Doc.pdf)
 
 
 
