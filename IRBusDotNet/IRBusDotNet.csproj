@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <UserSecretsId>ac6ed237-0c21-4feb-b4c4-911c860c987c</UserSecretsId>
+    <Company>Keyvan Abdollahzadeh</Company>
+    <Version>1.6.0</Version>
+    <Description>Iran Bus Pakage (safar724)</Description>
+    <PackageProjectUrl>https://github.com/keyone2693/IRBusDotNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/keyone2693/IRBusDotNet</RepositoryUrl>
+    <RepositoryType>Public</RepositoryType>
+    <PackageTags>Iran,Bus,Tickets</PackageTags>
+    <PackageReleaseNotes>Fixing Bugs</PackageReleaseNotes>
+    <PackageIcon>LOGO.jpg</PackageIcon>
+    <PackageIconUrl />
+    <ApplicationIcon>irbus.ico</ApplicationIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RestSharp" Version="106.6.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LOGO.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

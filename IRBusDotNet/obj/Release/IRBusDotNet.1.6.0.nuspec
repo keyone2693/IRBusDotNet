@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>IRBusDotNet</id>
+    <version>1.6.0</version>
+    <authors>IRBusDotNet</authors>
+    <owners>IRBusDotNet</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>LOGO.jpg</icon>
+    <projectUrl>https://github.com/keyone2693/IRBusDotNet</projectUrl>
+    <description>Iran Bus Pakage (safar724)</description>
+    <releaseNotes>Fixing Bugs</releaseNotes>
+    <tags>Iran,Bus,Tickets</tags>
+    <repository type="Public" url="https://github.com/keyone2693/IRBusDotNet" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="RestSharp" version="106.6.10" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\Code\Package\IrBusWebService\IRBusDotNet\bin\Release\netstandard2.0\IRBusDotNet.dll" target="lib\netstandard2.0\IRBusDotNet.dll" />
+    <file src="D:\Code\Package\LOGO.jpg" target="LOGO.jpg" />
+  </files>
+</package>
