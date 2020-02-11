@@ -9,7 +9,7 @@ namespace ExampleTest
         static void Main(string[] args)
         {
             IIRBusApi _api = new IRBusApi();        
-            var tokenRes = _api.GetToken("rahnavard724", "@pezhman!123");
+            var tokenRes = _api.GetToken("username", "password");
             if (tokenRes.Status)
             {
                 //var flag = api.ValidateToken(tokenRes.Result.Created, tokenRes.Result.ExpireIn);

@@ -249,7 +249,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "2.0.1",
+    "version": "2.0.5",
     "restore": {
       "projectUniqueName": "D:\\Code\\Package\\C#\\IrBusWebService\\IRBusDotNet\\IRBusDotNet.csproj",
       "projectName": "IRBusDotNet",

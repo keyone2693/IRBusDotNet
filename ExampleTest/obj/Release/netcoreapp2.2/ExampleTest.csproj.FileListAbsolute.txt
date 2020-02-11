@@ -17,8 +17,3 @@ D:\Code\Package\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTes
 D:\Code\Package\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.AssemblyInfo.cs
 D:\Code\Package\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.dll
 D:\Code\Package\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.pdb
-D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.csprojAssemblyReference.cache
-D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.AssemblyInfoInputs.cache
-D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.AssemblyInfo.cs
-D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.dll
-D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Release\netcoreapp2.2\ExampleTest.pdb

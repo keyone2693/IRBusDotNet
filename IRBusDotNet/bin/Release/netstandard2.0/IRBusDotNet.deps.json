@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "IRBusDotNet/2.0.1": {
+      "IRBusDotNet/2.0.5": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "12.0.3",
@@ -42,7 +42,7 @@
     }
   },
   "libraries": {
-    "IRBusDotNet/2.0.1": {
+    "IRBusDotNet/2.0.5": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

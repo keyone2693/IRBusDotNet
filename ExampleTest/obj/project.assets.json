@@ -226,7 +226,7 @@
           "lib/netstandard2.0/RestSharp.dll": {}
         }
       },
-      "IRBusDotNet/2.0.1": {
+      "IRBusDotNet/2.0.5": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -757,7 +757,7 @@
         "restsharp.nuspec"
       ]
     },
-    "IRBusDotNet/2.0.1": {
+    "IRBusDotNet/2.0.5": {
       "type": "project",
       "path": "../IRBusDotNet/IRBusDotNet.csproj",
       "msbuildProject": "../IRBusDotNet/IRBusDotNet.csproj"
@@ -765,7 +765,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "IRBusDotNet >= 2.0.1",
+      "IRBusDotNet >= 2.0.5",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
