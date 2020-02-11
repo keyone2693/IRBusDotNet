@@ -59,6 +59,8 @@ namespace IRBusDotNet.Helpers
                     return "صندلی مورد نظر موقتا غیرقابل خرید میباشد";
                 case "ValidationFailed":
                     return "یک یا چند پارامتر ورودی معتبر نمیباشد";
+                case "unsupported_grant_type":
+                    return "یوزر و پسورد اشتباه";
             }
             return "خطا";
         }

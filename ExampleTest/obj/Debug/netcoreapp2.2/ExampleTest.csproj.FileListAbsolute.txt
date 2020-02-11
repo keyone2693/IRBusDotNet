@@ -12,3 +12,16 @@ E:\Package\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\IrBusWebService.p
 E:\Package\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.csproj.CopyComplete
 E:\Package\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.dll
 E:\Package\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.pdb
+D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.csprojAssemblyReference.cache
+D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.AssemblyInfoInputs.cache
+D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.AssemblyInfo.cs
+D:\Code\Package\C#\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\ExampleTest.deps.json
+D:\Code\Package\C#\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\ExampleTest.runtimeconfig.json
+D:\Code\Package\C#\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\ExampleTest.runtimeconfig.dev.json
+D:\Code\Package\C#\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\ExampleTest.dll
+D:\Code\Package\C#\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\ExampleTest.pdb
+D:\Code\Package\C#\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\IRBusDotNet.dll
+D:\Code\Package\C#\IrBusWebService\ExampleTest\bin\Debug\netcoreapp2.2\IRBusDotNet.pdb
+D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.csproj.CopyComplete
+D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.dll
+D:\Code\Package\C#\IrBusWebService\ExampleTest\obj\Debug\netcoreapp2.2\ExampleTest.pdb

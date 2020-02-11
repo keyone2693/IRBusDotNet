@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace IRBusDotNet
     {
         private readonly HttpClient _http;
         private StringContent _content;
+        private FormUrlEncodedContent _contentForToken;
         private HttpResponseMessage _response;
 
         private string _token = "";
@@ -40,10 +42,16 @@ namespace IRBusDotNet
 
             _http.DefaultRequestHeaders.Clear();
 
-            _content = new StringContent(
-           JsonConvert.SerializeObject(new { username, password, granttype }), UTF8Encoding.UTF8, "application/x-www-form-urlencoded");
+            var values = new Dictionary<string, string>
+                { 
+                    {"grant_type", granttype},
+                    {"username", username},
+                    {"password", password }
+                 };
 
-            _response = _http.PostAsync(ApiUrl.BaseUrl.ToUrl(ApiUrl.Token), _content).Result;
+            _contentForToken = new FormUrlEncodedContent(values);
+
+            _response = _http.PostAsync(ApiUrl.BaseUrl.ToUrl(ApiUrl.Token), _contentForToken).Result;
 
 
             if (_response.IsSuccessStatusCode)
@@ -313,10 +321,16 @@ namespace IRBusDotNet
 
             _http.DefaultRequestHeaders.Clear();
 
-            _content = new StringContent(
-           JsonConvert.SerializeObject(new { username, password, granttype }), UTF8Encoding.UTF8, "application/x-www-form-urlencoded");
+            var values = new Dictionary<string, string>
+                {
+                    {"grant_type", granttype},
+                    {"username", username},
+                    {"password", password }
+                 };
 
-            _response =await _http.PostAsync(ApiUrl.BaseUrl.ToUrl(ApiUrl.Token), _content);
+            _contentForToken = new FormUrlEncodedContent(values);
+
+            _response =await _http.PostAsync(ApiUrl.BaseUrl.ToUrl(ApiUrl.Token), _contentForToken);
 
 
             if (_response.IsSuccessStatusCode)
@@ -425,7 +439,7 @@ namespace IRBusDotNet
             return result;
         }
 
-        public async Task<BusServiceResult<BusServiceGo>>GetBusServiceAsync(string routId)
+        public async Task<BusServiceResult<BusServiceGo>> GetBusServiceAsync(string routId)
         {
             var result = new BusServiceResult<BusServiceGo>();
             _http.DefaultRequestHeaders.Clear();
@@ -590,11 +604,15 @@ namespace IRBusDotNet
             {
                 if (disposing)
                 {
-                    _http.Dispose();
+                    if (_http != null)
+                        _http.Dispose();
                     if (_content != null)
                         _content.Dispose();
+                    if (_contentForToken != null)
+                        _contentForToken.Dispose();
                     if (_response != null)
                         _response.Dispose();
+
                 }
             }
             disposed = true;
