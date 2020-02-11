@@ -4,13 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <UserSecretsId>ac6ed237-0c21-4feb-b4c4-911c860c987c</UserSecretsId>
     <Company>Keyvan Abdollahzadeh</Company>
-    <Version>1.7.2</Version>
-    <Description>Iran Bus Pakage (safar724)</Description>
+    <Version>2.0.1</Version>
+    <Description>Iran Bus Service Pakage (safar724)</Description>
     <PackageProjectUrl>https://github.com/keyone2693/IRBusDotNet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/keyone2693/IRBusDotNet</RepositoryUrl>
     <RepositoryType>Public</RepositoryType>
     <PackageTags>Iran,Bus,Tickets</PackageTags>
-    <PackageReleaseNotes>Fixing Bugs</PackageReleaseNotes>
+    <PackageReleaseNotes>library is based on HttpClient now
+more error covrage
+... Fixing Bugs</PackageReleaseNotes>
     <PackageIcon>LOGO.jpg</PackageIcon>
     <PackageIconUrl />
     <ApplicationIcon>irbus.ico</ApplicationIcon>
@@ -23,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\LOGO.jpg">
+    <None Include="..\..\..\Files\LOGO.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

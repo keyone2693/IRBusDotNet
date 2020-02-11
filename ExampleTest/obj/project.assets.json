@@ -226,7 +226,7 @@
           "lib/netstandard2.0/RestSharp.dll": {}
         }
       },
-      "IRBusDotNet/1.7.2": {
+      "IRBusDotNet/2.0.1": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -757,7 +757,7 @@
         "restsharp.nuspec"
       ]
     },
-    "IRBusDotNet/1.7.2": {
+    "IRBusDotNet/2.0.1": {
       "type": "project",
       "path": "../IRBusDotNet/IRBusDotNet.csproj",
       "msbuildProject": "../IRBusDotNet/IRBusDotNet.csproj"
@@ -765,7 +765,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "IRBusDotNet >= 1.7.2",
+      "IRBusDotNet >= 2.0.1",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
@@ -776,11 +776,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\Package\\IrBusWebService\\ExampleTest\\ExampleTest.csproj",
+      "projectUniqueName": "D:\\Code\\Package\\C#\\IrBusWebService\\ExampleTest\\ExampleTest.csproj",
       "projectName": "ExampleTest",
-      "projectPath": "D:\\Code\\Package\\IrBusWebService\\ExampleTest\\ExampleTest.csproj",
+      "projectPath": "D:\\Code\\Package\\C#\\IrBusWebService\\ExampleTest\\ExampleTest.csproj",
       "packagesPath": "C:\\Users\\Key1-lab\\.nuget\\packages\\",
-      "outputPath": "D:\\Code\\Package\\IrBusWebService\\ExampleTest\\obj\\",
+      "outputPath": "D:\\Code\\Package\\C#\\IrBusWebService\\ExampleTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -799,8 +799,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\Code\\Package\\IrBusWebService\\IRBusDotNet\\IRBusDotNet.csproj": {
-              "projectPath": "D:\\Code\\Package\\IrBusWebService\\IRBusDotNet\\IRBusDotNet.csproj"
+            "D:\\Code\\Package\\C#\\IrBusWebService\\IRBusDotNet\\IRBusDotNet.csproj": {
+              "projectPath": "D:\\Code\\Package\\C#\\IrBusWebService\\IRBusDotNet\\IRBusDotNet.csproj"
             }
           }
         }
@@ -831,7 +831,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

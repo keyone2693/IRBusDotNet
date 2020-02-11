@@ -1,44 +1,45 @@
-﻿using IRBusDotNet.Models.EndBuy;
-using IRBusDotNet.Results;
+﻿using IRBusDotNet.Models;
+using IRBusDotNet.Models.BusServiceGoF;
+using IRBusDotNet.Models.EndBuy;
+using IRBusDotNet.Models.EndBuy.Info;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IRBusDotNet
 {
-    public interface IIRBusApi
+    public interface IIRBusApi : IDisposable
     {
-        string Getcode(string statusCode);
+        void AddToken(string token);
 
-        BusTokenResult GetToken(string username, string password, string granttype = "password");
+        BusServiceResult<BusTokenResult> GetToken(string username, string password, string granttype = "password");
 
-        bool ValidateToken(DateTime issued, DateTime expires);
+        BusServiceResult<bool> ValidateToken(DateTime issued, DateTime expires);
 
-        GetCitiesResult GetCities();
-        GetServicesResult GetServices(string startCityId, string endCityId, string date);
+        BusServiceResult<List<BusCity>> GetCities();
+        BusServiceResult<List<BusServices>> GetServices(string startCityId, string endCityId, string date);
 
-        GetBusServiceResult GetBusService(string routId);
+        BusServiceResult<BusServiceGo> GetBusService(string routId);
 
-        BuyTicketResult BuyTicket(string servId, TicketToBook ticket);
+        BusServiceResult<TicketSummary> BuyTicket(string servId, TicketToBook ticket);
 
-        InfoBuyTicketResult InfoBuyTicket(long ticketId);
-        RefundOverviewTicketResult RefundOverviewTicket(string ticketId);
+        BusServiceResult<TicketInfo> InfoBuyTicket(long ticketId);
+        BusServiceResult<RefundOverview> RefundOverviewTicket(string ticketId);
 
-        RefundTicketResult RefundTicket(string ticketId);
+        BusServiceResult<bool> RefundTicket(string ticketId);
 
-        Task<BusTokenResult> GetTokenAsync(string username, string password, string granttype = "password");
+        Task<BusServiceResult<BusTokenResult>> GetTokenAsync(string username, string password, string granttype = "password");
 
-        Task<GetCitiesResult> GetCitiesAsync();
-        Task<GetServicesResult> GetServicesAsync(string startCityId, string endCityId, string date);
+        Task<BusServiceResult<List<BusCity>>> GetCitiesAsync();
+        Task<BusServiceResult<List<BusServices>>> GetServicesAsync(string startCityId, string endCityId, string date);
 
-        Task<GetBusServiceResult> GetBusServiceAsync(string routId);
+        Task<BusServiceResult<BusServiceGo>> GetBusServiceAsync(string routId);
 
-        Task<BuyTicketResult> BuyTicketAsync(string servId, TicketToBook ticket);
+        Task<BusServiceResult<TicketSummary>> BuyTicketAsync(string servId, TicketToBook ticket);
 
-        Task<InfoBuyTicketResult> InfoBuyTicketAsync(long ticketId);
-        Task<RefundOverviewTicketResult> RefundOverviewTicketAsync(string ticketId);
+        Task<BusServiceResult<TicketInfo>> InfoBuyTicketAsync(long ticketId);
+        Task<BusServiceResult<RefundOverview>> RefundOverviewTicketAsync(string ticketId);
 
-        Task<RefundTicketResult> RefundTicketAsync(string ticketId);
+        Task<BusServiceResult<bool>> RefundTicketAsync(string ticketId);
     }
 }

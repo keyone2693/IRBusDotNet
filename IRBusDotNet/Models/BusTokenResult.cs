@@ -1,9 +1,9 @@
 ﻿using System;
 
 
-namespace IRBusDotNet.Results
+namespace IRBusDotNet.Models
 {
-    public class BusTokenResult : ErrorStatusResult
+    public class BusTokenResult 
     {
         public string AccessToken { get; set; }
         public DateTime Created { get; set; }
