@@ -14,7 +14,7 @@ Note that: you should register on safar724 website and get your username and pas
 [![Build status](https://img.shields.io/appveyor/ci/keyone2693/IRBusDotNet.svg)](https://ci.appveyor.com/project/keyone2693/irbusdotnet)
 [![NuGet](https://img.shields.io/nuget/v/IRBusDotNet.svg)](https://www.nuget.org/packages/IRBusDotNet/)
 
-#### Current version: 1.7.x [Stable]
+#### Current version: 2.0.x [Stable]
 
 ## Overview
 
