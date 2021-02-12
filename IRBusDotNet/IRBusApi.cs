@@ -15,7 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace IRBusDotNet
-{
+{ //اگر نتوانس سریالایز کند یعنی :
+  // ارتباط با شرکت مسافربری برقرار نیست برای مشاهده صندلی ها مجددا تلاش کنید 
     public class IRBusApi : IIRBusApi
     {
         private readonly HttpClient _http;
@@ -462,6 +463,8 @@ namespace IRBusDotNet
             }
             else
             {
+                //اگر نتوانس سریالایز کند یعنی :
+                // ارتباط با شرکت مسافربری برقرار نیست برای مشاهده صندلی ها مجددا تلاش کنید 
                 var res = JsonConvert.DeserializeObject<BusErrorResult>(await _response.Content.ReadAsStringAsync());
                 result.Message = res.ToError();
                 result.Status = false;

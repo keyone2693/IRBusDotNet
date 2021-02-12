@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <UserSecretsId>ac6ed237-0c21-4feb-b4c4-911c860c987c</UserSecretsId>
     <Company>Keyvan Abdollahzadeh</Company>
-    <Version>2.0.5</Version>
+    <Version>2.0.6</Version>
     <Description>Iran Bus Service Pakage (safar724)</Description>
     <PackageProjectUrl>https://github.com/keyone2693/IRBusDotNet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/keyone2693/IRBusDotNet</RepositoryUrl>
     <RepositoryType>Public</RepositoryType>
     <PackageTags>Iran,Bus,Tickets</PackageTags>
-    <PackageReleaseNotes>library is based on HttpClient now
+    <PackageReleaseNotes>url changed
 ... Fixing Bugs</PackageReleaseNotes>
     <PackageIcon>LOGO.jpg</PackageIcon>
     <PackageIconUrl />

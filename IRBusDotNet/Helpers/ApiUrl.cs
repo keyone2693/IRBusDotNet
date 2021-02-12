@@ -6,7 +6,7 @@ namespace IRBusDotNet.Helpers
 {
     public static class ApiUrl
     {
-        public const string BaseUrl = "https://api.safar724.com";
+        public const string BaseUrl = "https://api.safar724.net";
         private const string VersionUrl = "/api/v1.0";
         public const string SafarBaseUrl = BaseUrl + VersionUrl;
 
